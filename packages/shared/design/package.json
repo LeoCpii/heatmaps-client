@@ -1,0 +1,15 @@
+{
+  "name": "@heatmaps/design",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "scss": "node-sass scss/themes/default.scss -o dist/themes --output-style compressed",
+    "watch": "node-sass scss/themes/default.scss --watch -o dist/themes compressed"
+  },
+  "devDependencies": {
+    "node-sass": "^8.0.0"
+  },
+  "packageManager": "yarn@3.2.1"
+}
