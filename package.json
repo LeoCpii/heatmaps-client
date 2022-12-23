@@ -1,0 +1,33 @@
+{
+  "name": "heatmaps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "leonardo.goncalves <leogoncalves.contato@gmail.com>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/shared/*",
+      "packages/shared/config/*",
+      "packages/projects/*",
+      "packages/e2e/*"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --collectCoverage",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
+  },
+  "devDependencies": {
+    "@heatmaps/design": "*",
+    "@heatmaps/lint": "*",
+    "@heatmaps/ui": "*",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.24",
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1",
+    "ts-jest": "^27.1.4"
+  },
+  "packageManager": "yarn@3.2.1"
+}
