@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "target": "ES6",
+    "outDir": "dist",
+    "module": "ESNext",
+    "declarationDir": "types",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "types": [
+      "node"
+    ],
+  },
+  "exclude": [
+    "**/tests",
+    "**/*.(test|spec).tsx",
+  ]
+}
