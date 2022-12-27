@@ -1,8 +1,12 @@
-button {
-    background-color: var(--brand);
-    border: none;
-    border-radius: 4px;
-    min-width: 150px;
-    padding: 10px;
-    cursor: pointer;
-}
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import "utilities/variables", "utilities/mixins";
+
+// 2. Base stuff
+@import "base/typography";
+
+// 3. Components
+@import "components/input";
+@import "components/button";
+@import "components/icon";

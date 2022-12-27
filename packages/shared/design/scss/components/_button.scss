@@ -1,0 +1,51 @@
+.#{$pre}-btn {
+    min-width: 100px;
+    height: 42px;
+    padding: 0px 15px;
+    border: none;
+    border-radius: $radius;
+    font-size: $medium;
+    transition: all $animation;
+    font-weight: $weight-bold;
+    box-shadow: $box-shadow;
+
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &:disabled {
+        background-color: var(--gray-100) !important;
+        color: var(--gray-200) !important;
+        cursor: not-allowed !important;
+
+        &:hover {
+            box-shadow: $box-shadow !important;
+            transform: translateY(0px) !important;
+        }
+    }
+
+    &._brand {
+        background-color: var(--brand);
+        color: var(--mode);
+
+        &:hover {
+            box-shadow: 0px 5px 10px var(--brand-opacity);
+        }
+    }
+
+    &._accent {
+        background-color: var(--accent);
+        color: var(--mode);
+
+        &:hover {
+            box-shadow: 0px 5px 10px var(--accent-opacity);
+        }
+    }
+
+    &._fluid {
+        width: 100%;
+    }
+}

@@ -5,10 +5,12 @@
   "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
-    "scss": "node-sass scss/themes/default.scss -o dist/themes --output-style compressed",
-    "watch": "node-sass scss/themes/default.scss --watch -o dist/themes compressed"
+    "scss": "node-sass scss/themes/default.scss -o dist/themes --output-style",
+    "watch": "node-sass scss/themes/default.scss --watch -o dist/themes",
+    "icons": "mkdirp dist/icons && cp -r icons/* dist/icons"
   },
   "devDependencies": {
+    "mkdirp": "^1.0.4",
     "node-sass": "^8.0.0"
   },
   "packageManager": "yarn@3.2.1"

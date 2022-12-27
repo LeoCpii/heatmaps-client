@@ -1,0 +1,13 @@
+.#{$pre}-icon {
+    &._brand {
+        color: var(--brand);
+    }
+
+    &._accent {
+        color: var(--accent);
+    }
+
+    &._mode {
+        color: var(--gray-200);
+    }
+}
