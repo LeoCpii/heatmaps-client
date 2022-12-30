@@ -11,7 +11,6 @@ export default {
         children: {
             name: 'text',
             control: 'string',
-            defaultValue: props.data,
             description: 'Button text',
         },
         theme: {

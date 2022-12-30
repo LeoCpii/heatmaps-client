@@ -4,5 +4,5 @@ export interface IProps {
     type?: 'button' | 'submit'
     fluid?: boolean;
     disabled?: boolean;
-    action: () => any;
+    action?: () => any;
 }

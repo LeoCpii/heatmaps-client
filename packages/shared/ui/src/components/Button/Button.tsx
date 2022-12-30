@@ -5,7 +5,7 @@ import './Button.scss';
 
 const Button = ({
     children,
-    action,
+    action = () => undefined,
     theme = 'brand',
     type = 'button',
     fluid = false,
@@ -20,16 +20,14 @@ const Button = ({
         return arr.join(' ');
     };
 
-    const click = () => {
-        if (!disabled) { action(); }
-    };
+    const click = () => { if (!disabled) { action(); } };
 
     return (
         <button
             className={cls()}
             onClick={() => click()}
-            type={type}
             disabled={disabled}
+            type={type}
         >{children}</button>
     );
 };
