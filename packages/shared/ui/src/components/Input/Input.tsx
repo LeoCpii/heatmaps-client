@@ -89,7 +89,7 @@ const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) 
         if (FORM?.controls && FORM?.controls[controlName]) {
             return control.dirty && FORM && !FORM.isValid ? control.error : '';
         } else {
-            return control.dirty && control.error || '';
+            return control.dirty && ERROR || '';
         }
     };
 
