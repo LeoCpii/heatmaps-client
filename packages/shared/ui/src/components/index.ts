@@ -1,5 +1,11 @@
 import Button from './Button';
+import Form from './Form';
+import Icon from './Icon';
+import Input from './Input';
 
 export {
-    Button
+    Button,
+    Input,
+    Form,
+    Icon
 };
