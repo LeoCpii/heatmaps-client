@@ -1,5 +1,5 @@
 import { Validator } from '@services/validator';
-import { FIELD_MESSAGES } from '../Input/const';
+import { FIELD_MESSAGES } from '../../Input/const';
 
 type Ttype = 'text' | 'email' | 'password';
 type TValue = string | number | boolean;
@@ -8,36 +8,41 @@ export interface Control {
     value: TValue;
     disabled?: boolean;
     required?: boolean;
+    dirty?: boolean;
     error?: string;
     type: Ttype;
 }
 
 export class FormControl {
-    public _value = '';
-    public _disabled!: boolean;
-    public _required!: boolean;
-    public _error = '';
-    public _type!: Ttype;
+    protected _value = '';
+    protected _error = '';
+    protected _disabled!: boolean;
+    protected _required!: boolean;
+    protected _dirty!: boolean;
+    protected _type!: Ttype;
 
     private validator: Validator = new Validator();
 
-    get value(): string { return this._value; }
-    set value(value: TValue) {
+    public get value(): string { return this._value; }
+    public set value(value: TValue) {
         this._value = String(value);
         this.validate();
     }
 
-    get disabled() { return this._disabled; }
-    set disabled(disabled: boolean) { this._disabled = disabled; }
+    public get disabled() { return this._disabled; }
+    public set disabled(disabled: boolean) { this._disabled = disabled; }
 
-    get required() { return this._required; }
-    set required(required: boolean) { this._required = required; }
+    public get required() { return this._required; }
+    public set required(required: boolean) { this._required = required; }
 
-    get type() { return this._type; }
-    set type(type: Ttype) { this._type = type; }
+    public get dirty() { return this._dirty; }
+    public set dirty(dirty: boolean) { this._dirty = dirty; }
 
-    get error() { return this._error; }
-    set error(error: any) { this._error = error; }
+    public get type() { return this._type; }
+    public set type(type: Ttype) { this._type = type; }
+
+    public get error() { return this._error; }
+    public set error(error: string) { this._error = error; }
 
     constructor(control: Control) {
         this.value = String(control.value);
@@ -47,7 +52,7 @@ export class FormControl {
         this.validate();
     }
 
-    private validate(): void {
+    public validate(): void {
         const data: any = {};
 
         data.required = this.required ? !this.value : false;
