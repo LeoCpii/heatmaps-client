@@ -1,10 +1,10 @@
-import { Control } from '../form/control';
+import { FormControl } from '@components/Form';
 import { TIcon } from '../Icon';
 
 export interface IProps {
-    control: Control;
-    icon: TIcon;
-    placeholder: string;
-    type: 'text' | 'email' | 'password';
-    required: boolean;    
+    control: FormControl;
+    controlName: string;
+    placeholder?: string;
+    icon?: TIcon;
+    label?: string;
 }

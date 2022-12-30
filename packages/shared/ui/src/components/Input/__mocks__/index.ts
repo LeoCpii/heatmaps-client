@@ -1,10 +1,8 @@
-import { FormControl } from '@components/form/control';
+import { FormControl } from '@components/Form/utilities/control';
 import { IProps } from '../interface';
 
 const data: Partial<IProps> = {
     placeholder: 'Write text here...',
-    required: false,
-    type: 'text',
     control: new FormControl({ value: '', required: false, type: 'text' })
 };
 

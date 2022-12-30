@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { IProps } from './interface';
+import React, { useState, useContext } from 'react';
+
+import { MASKS, NUMBER, NUMBER_MASK } from './const';
+import { Context } from '@components/Form';
 import { Sanitize } from './sanitaize';
+import { IProps } from './interface';
 
 import Icon, { ESize } from '../Icon';
-import { MASKS, NUMBER, NUMBER_MASK } from './const';
 
 import './Input.scss';
 
-const Input = ({ icon, placeholder, control }: IProps) => {
-    const [error, setError] = useState<string>('');
+const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) => {
+    const { FORM } = useContext(Context);
+    const [ERROR, SET_ERROR] = useState<string>();
     const [timeout, setterTimeout] = useState<NodeJS.Timeout>();
 
     const sanitize = new Sanitize();
@@ -21,13 +24,13 @@ const Input = ({ icon, placeholder, control }: IProps) => {
 
     const groupCls = () => {
         const arr = ['ds-input-group'];
-        if (error) { arr.push('_active'); }
+        if (getError()) { arr.push('_active'); }
         return arr.join(' ');
     };
 
     const errorCls = () => {
         const arr = ['message'];
-        if (error) { arr.push('_active'); }
+        if (getError()) { arr.push('_active'); }
         return arr.join(' ');
     };
 
@@ -37,19 +40,19 @@ const Input = ({ icon, placeholder, control }: IProps) => {
             : '';
     };
 
-    const mapType = (): string => {
-        if (['password'].includes(control.type)) { return control.type; }
-        if (NUMBER.includes(control.type)) { return 'tel'; }
+    const mapType = () => {
+        if (control) {
+            if (['password'].includes(control.type)) { return control.type; }
+            if (NUMBER.includes(control.type)) { return 'tel'; }
 
-        return 'text';
+            return 'text';
+        }
     };
 
     const validate = () => {
-        console.log('control.value', control.value);
-        console.log('control.error', control.error);
         control.error
-            ? setError(control.error)
-            : setError('');
+            ? SET_ERROR(control.error)
+            : SET_ERROR('');
     };
 
     const clean = (value: string): string => {
@@ -69,27 +72,46 @@ const Input = ({ icon, placeholder, control }: IProps) => {
     };
 
     const input = (event: any) => {
+        control.dirty = true;
         const value = event.target.value || '';
-        console.log('AAA', value);
         const sanitized = clean(value);
         control.value = sanitized;
         validate();
     };
 
+    const getPlaceholder = () => {
+        return placeholder
+            ? `${placeholder} ${control && control.required ? '*' : ''}`
+            : '';
+    };
+
+    const getError = () => {
+        if (FORM?.controls && FORM?.controls[controlName]) {
+            return control.dirty && FORM && !FORM.isValid ? control.error : '';
+        } else {
+            return control.dirty && control.error || '';
+        }
+    };
+
+    const getLabel = () => {
+        return label ? <label className='label'>{label}</label> : '';
+    };
+
     return (
         <div className='ds-input-container'>
+            {getLabel()}
             <div className={groupCls()}>
                 {iconFn()}
                 <input
                     type={mapType()}
-                    placeholder={`${placeholder} ${control.required ? '*' : ''}`}
+                    placeholder={getPlaceholder()}
                     className={cls()}
                     onInput={(event) => handler(event)}
                     onBlur={(event) => input(event)}
                 />
             </div>
             <div className='error'>
-                <div className={errorCls()}> {error} </div>
+                <div className={errorCls()}> {getError()} </div>
             </div>
         </div>
     );
