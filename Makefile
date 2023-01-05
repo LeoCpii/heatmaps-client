@@ -1,7 +1,5 @@
 RUN:=yarn
 
-
-
 # LIBS #
 UI:=ui
 DESIGN:=design
@@ -39,7 +37,7 @@ build-ui:
 	$(call run_in_workspace,$(UI),build)
 
 build-design:
-	$(call run_in_workspace,$(DESIGN),scss)
+	$(call run_in_workspace,$(DESIGN),build:default)
 
 build-web:
 	$(call run_in_workspace,$(WEB),build)
@@ -51,6 +49,11 @@ watch-ui:
 
 watch-design:
 	$(call run_in_workspace,$(DESIGN),watch)
+
+# ------------------ TEST ------------------ #
+
+test-ui:
+	$(call run_in_workspace,$(UI),test)
 
 # ------------------ CLEAR ------------------ #
 
