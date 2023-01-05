@@ -7,6 +7,17 @@
     "module": "ESNext",
     "declarationDir": "types",
     "moduleResolution": "node",
+    "paths": {
+      "@mocks/*": [
+        "__mocks__/*"
+      ],
+      "@services/*": [
+        "src/shared/services/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
+    },
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
@@ -16,18 +27,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "sourceMap": true,
-    "strict": true,
-    "types": [
-      "node"
-    ],
-    "paths": {
-      "@services/*": [
-        "src/shared/services/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ]
-    }
+    "strict": true
   },
   "exclude": [
     "**/tests",
