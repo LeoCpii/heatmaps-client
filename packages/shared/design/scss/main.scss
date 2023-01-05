@@ -4,6 +4,8 @@
 @import "utilities/variables", "utilities/mixins";
 
 // 2. Base stuff
+@import "base/fonts";
+@import "base/normalize";
 @import "base/typography";
 
 // 3. Components
