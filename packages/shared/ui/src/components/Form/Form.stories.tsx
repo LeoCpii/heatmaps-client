@@ -12,17 +12,17 @@ const Template: ComponentStory<typeof Form> = () => {
     const submit = (values) => { console.log('Enviando para o form', values); };
 
     const form = new FormGroup({
-        email: new FormControl({ value: '', type: 'text', required: true }),
-        password: new FormControl({ value: '', type: 'password', required: false })
+        email: new FormControl({ value: 'teste', type: 'email', required: true }),
+        password: new FormControl({ value: 'bolinho', type: 'password', required: false })
     });
 
     return (
         <Form form={form} action={(values) => submit(values)}>
-            <Input control={form.controls['email']} controlName="email" label="Email"/>
-            <Input control={form.controls['password']} controlName="password" label="Password"/>
+            <Input controlName="email" label="Email"/>
+            <Input controlName="password" label="Password"/>
             <Button type='submit'>Send</Button>
         </Form>
-    );
+    ); 
 };
 
 export const Deafult = Template.bind({});

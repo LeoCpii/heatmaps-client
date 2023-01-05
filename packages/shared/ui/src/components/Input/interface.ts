@@ -1,8 +1,8 @@
-import { FormControl } from '@components/Form';
+// import { FormControl } from '@components/Form';
 import { TIcon } from '../Icon';
 
 export interface IProps {
-    control: FormControl;
+    // control: FormControl;
     controlName: string;
     placeholder?: string;
     icon?: TIcon;

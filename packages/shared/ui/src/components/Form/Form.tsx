@@ -1,24 +1,33 @@
 import React from 'react';
+import { useFormContext } from './hook';
 import { IProps, IContext } from './interface';
 
 import './Form.scss';
-import { useFormContext } from './hook';
 
 export const Context = React.createContext<IContext>({});
 
-const Form = ({ children, form, action }: IProps) => {
-    const context: IContext = useFormContext();
-    const { SET_FORM } = context;
+const Form = ({ children, form, action, log }: IProps) => {
+    const context: IContext = useFormContext(form);
+    const { FORM, SET_FORM } = context;
+
+    const getLog = () => {
+        return log ? (
+            <pre>
+                {JSON.stringify(FORM, null, 2)}
+            </pre>
+        ) : '';
+    };
 
     const submit = (event) => {
         event.preventDefault();
 
-        if (form.isValid) { action(form.values); }
-        else {
-            form.dirty();
-            form.validation();
-            SET_FORM && SET_FORM(form);
+        if (FORM) {
+            FORM.dirty();
+            FORM.validation();
+            SET_FORM && SET_FORM({});
         }
+
+        if (FORM?.isValid) { action(form.values); }
     };
 
     return (
@@ -26,6 +35,7 @@ const Form = ({ children, form, action }: IProps) => {
             <form onSubmit={(event) => submit(event)}>
                 {children}
             </form>
+            {getLog()}
         </Context.Provider>
     );
 };

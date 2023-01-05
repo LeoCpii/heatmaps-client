@@ -1,14 +1,19 @@
 import { FormControl } from './control';
 
-interface AbstractControl { [key: string]: FormControl; }
+export interface AbstractControl { [key: string]: FormControl; }
 
 export class FormGroup {
     private _valid!: boolean;
-    public controls: AbstractControl;
+    private _controls!: AbstractControl;
 
     constructor(controls: AbstractControl) {
         this.controls = controls;
         this.validation();
+    }
+
+    public get controls() { return this._controls; }
+    public set controls(control: AbstractControl) {
+        this._controls = { ...this._controls, ...control };
     }
 
     public get values(): any {
@@ -21,7 +26,7 @@ export class FormGroup {
     }
 
     public get errors() {
-        return Object.values(this.controls).map(v => v.error);
+        return Object.values(this.controls).filter(i => i.error);
     }
 
     public get isValid(): boolean { return this._valid; }

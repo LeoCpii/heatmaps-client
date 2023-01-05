@@ -26,7 +26,6 @@ export default {
 const Template: ComponentStory<typeof Input> = (args: IProps) => <Input
     icon={args.icon}
     placeholder={args.placeholder}
-    control={args.control}
     controlName={args.controlName}
 />;
 
@@ -36,15 +35,15 @@ Text.args = { ...props.data };
 
 export const Email = Template.bind({});
 
-Email.args = { ...props.data, control: props.controls.email, controlName: 'email' };
+Email.args = { ...props.data, controlName: 'email' };
 
 export const Password = Template.bind({});
 
-Password.args = { ...props.data, control: props.controls.password, controlName: 'password' };
+Password.args = { ...props.data, controlName: 'password' };
 
 export const Required = Template.bind({});
 
-Required.args = { ...props.data, control: props.controls.required , controlName: 'required'};
+Required.args = { ...props.data, controlName: 'required'};
 
 export const Icon = Template.bind({});
 

@@ -21,7 +21,7 @@ export class FormControl {
     protected _dirty!: boolean;
     protected _type!: Ttype;
 
-    private validator: Validator = new Validator();
+    private static validator: Validator = new Validator();
 
     public get value(): string { return this._value; }
     public set value(value: TValue) {
@@ -56,8 +56,8 @@ export class FormControl {
         const data: any = {};
 
         data.required = this.required ? !this.value : false;
-        data.email = this.type === 'email' ? !this.validator.isValidEmail(this.value) : false;
-        data.password = this.type === 'password' ? !this.validator.isValidPassword(this.value) : false;
+        data.email = this.type === 'email' ? !FormControl.validator.isValidEmail(this.value) : false;
+        data.password = this.type === 'password' ? !FormControl.validator.isValidPassword(this.value) : false;
 
         const hasError = Object.keys(data).some(key => data[key]);
 

@@ -9,10 +9,13 @@ import Icon, { ESize } from '../Icon';
 
 import './Input.scss';
 
-const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) => {
-    const { FORM } = useContext(Context);
+const Input = ({ icon, placeholder = '', label, controlName }: IProps) => {
+    const { FORM, SET_FORM } = useContext(Context);
     const [ERROR, SET_ERROR] = useState<string>();
+    const control = FORM?.controls[controlName];
+    const [VALUE, SET_VALUE] = useState<string>(control?.value as string);
     const [timeout, setterTimeout] = useState<NodeJS.Timeout>();
+
 
     const sanitize = new Sanitize();
 
@@ -50,14 +53,16 @@ const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) 
     };
 
     const validate = () => {
-        control.error
-            ? SET_ERROR(control.error)
-            : SET_ERROR('');
+        if (control) {
+            control.error
+                ? SET_ERROR(control.error)
+                : SET_ERROR('');
+        }
     };
 
     const clean = (value: string): string => {
         let clean: string = value;
-        if (value) {
+        if (control && value) {
             if (control.type === 'email') { clean = value; }
             if (NUMBER_MASK.includes(control.type)) { clean = sanitize.number(value); }
             if (MASKS.includes(control.type)) { clean = sanitize.text(value); }
@@ -72,29 +77,39 @@ const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) 
     };
 
     const input = (event: any) => {
-        control.dirty = true;
-        const value = event.target.value || '';
-        const sanitized = clean(value);
-        control.value = sanitized;
-        validate();
+        if (control) {
+            control.dirty = true;
+            const value = event.target.value || '';
+            const sanitized = clean(value);
+            control.value = sanitized;
+            
+            SET_VALUE(sanitized);
+
+            SET_FORM && SET_FORM({ [controlName]: control });
+
+            validate();
+        }
     };
 
     const getPlaceholder = () => {
         return placeholder
-            ? `${placeholder} ${control && control.required ? '*' : ''}`
+            ? `${placeholder} ${control && control.required && !label ? '*' : ''}`
             : '';
     };
 
     const getError = () => {
-        if (FORM?.controls && FORM?.controls[controlName]) {
-            return control.dirty && FORM && !FORM.isValid ? control.error : '';
-        } else {
-            return control.dirty && ERROR || '';
+        if (control) {
+            if (FORM?.controls && FORM?.controls[controlName]) {
+                return control.dirty && FORM && !FORM.isValid ? control.error : '';
+            } else {
+                return control.dirty && ERROR || '';
+            }
         }
     };
 
     const getLabel = () => {
-        return label ? <label className='label'>{label}</label> : '';
+        const identifier = control && control.required ? '*' : '';
+        return label ? <label className='label'>{label} {identifier}</label> : '';
     };
 
     return (
@@ -103,6 +118,7 @@ const Input = ({ icon, placeholder = '', label, control, controlName }: IProps) 
             <div className={groupCls()}>
                 {iconFn()}
                 <input
+                    defaultValue={VALUE}
                     type={mapType()}
                     placeholder={getPlaceholder()}
                     className={cls()}
