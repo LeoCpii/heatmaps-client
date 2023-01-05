@@ -1,0 +1,71 @@
+.#{$pre}-grid {
+    @include grid();
+
+    &--gap {
+        @include grid(15px);
+
+        @include for-mobile {
+            @include grid();
+        }
+    }
+
+    &--tablet-block {
+        display: block;
+    }
+
+    .ci-col {
+        @for $i from 1 through $columns {
+            &-#{$i} {
+                @include grid-column-span($i);
+            }
+        }
+    }
+
+    .ci-start {
+        @for $i from 1 through $columns {
+            &-#{$i} {
+                @include grid-column-start($i);
+            }
+        }
+    }
+
+    @include for-tablet {
+        .ci-col-md {
+            @for $i from 1 through $columns {
+                &-#{$i} {
+                    @include grid-column-span($i);
+                }
+            }
+        }
+
+        .ci-start-md {
+            @for $i from 1 through $columns {
+                &-#{$i} {
+                    @include grid-column-start($i);
+                }
+            }
+        }
+    }
+
+    @include for-mobile {
+        .ci-col-sm {
+            @for $i from 1 through $columns {
+                &-#{$i} {
+                    @include grid-column-span($i);
+                }
+            }
+        }
+
+        .ci-start-sm {
+            @for $i from 1 through $columns {
+                &-#{$i} {
+                    @include grid-column-start($i);
+                }
+            }
+        }
+    }
+}
+
+.ci-wrapper {
+    @include wrapper;
+}

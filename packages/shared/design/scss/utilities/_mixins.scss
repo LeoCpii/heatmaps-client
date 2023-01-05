@@ -42,12 +42,13 @@
 }
 
 // GRID SYSTEM
-@mixin grid($GAP: 0, $columns-columns: $grid-columns) {
+@mixin grid($GAP: 0, $grid-columns: $columns, $grid-rows: $rows) {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: unquote(repeater("1fr ", $columns-columns));
+    -ms-grid-columns: unquote(repeater("1fr ", $grid-columns));
     grid-gap: $GAP;
-    grid-template-columns: repeat($columns-columns, 1fr);
+    grid-template-columns: repeat($grid-columns, 1fr);
+    grid-template-rows: $grid-rows;
     position: relative;
     width: 100%;
 }
@@ -57,7 +58,7 @@
     grid-column-start: $cols;
 }
 
-@mixin grid-column-span($cols: $grid-columns) {
+@mixin grid-column-span($cols: $columns) {
     grid-column-end: span $cols;
     -ms-grid-column-span: $cols;
 }

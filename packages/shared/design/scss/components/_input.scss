@@ -1,10 +1,6 @@
 .#{$pre}-input-container {
     position: relative;
 
-    .label {
-        
-    }
-
     .#{$pre}-input-group {
         height: 42px;
         border: none;
@@ -12,6 +8,7 @@
         border-radius: $radius;
         transition: all $animation;
         border: 1px solid var(--gray-100);
+        background-color: var(--mode);
         user-select: none;
         padding: 0px 15px;
 
@@ -20,6 +17,7 @@
         input {
             border: none;
             width: 100%;
+            background-color: var(--mode);
             height: -webkit-fill-available;
             outline: none;
             user-select: none;
@@ -38,7 +36,7 @@
         overflow: hidden;
         width: fit-content;
         padding: 5px 0px;
-        min-height: 15px;
+        min-height: 26px;
 
         .message {
             font-size: $small;
