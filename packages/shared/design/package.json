@@ -5,9 +5,11 @@
   "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
-    "scss": "node-sass scss/themes/default.scss -o dist/themes --output-style",
-    "watch": "node-sass scss/themes/default.scss --watch -o dist/themes",
-    "icons": "mkdirp dist/icons && cp -r icons/* dist/icons"
+    "watch": "node-sass scss/themes/* --watch -o dist/themes",
+    "utilities": "mkdirp dist/utilities && cp -r scss/utilities/* dist/utilities",
+    "theme:default": "node-sass scss/themes/default.scss -o dist/themes --output-style && npm run utilities",
+    "icons": "mkdirp dist/icons && cp -r icons/* dist/icons",
+    "build:default": "npm run theme:default && npm run utilities && npm run icons"
   },
   "devDependencies": {
     "mkdirp": "^1.0.4",

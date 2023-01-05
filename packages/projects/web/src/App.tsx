@@ -1,27 +1,35 @@
-import React from 'react';
-import { ReactComponent as Logo } from './logo.svg';
-import './App.css';
+import './App.scss';
 
-import { Component } from '@heatmaps/ui';
+import { Form, Input, Button, FormControl, FormGroup } from '@heatmaps/ui';
 
 function App() {
+  const form = new FormGroup({
+    email: new FormControl({ type: 'email', value: '' }),
+    password: new FormControl({ type: 'password', value: '' }),
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo height={'250px'} width={'250px'}/>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          <Component.Button>teste</Component.Button>
-        </a>
-      </header>
+    <div className="root">
+      <div className="container">
+        <div id="title">
+          <h1>Login</h1>
+          <div className="row"></div>
+        </div>
+        <Form form={form} action={(e: any) => console.log('value', e)}>
+          <Input controlName="email" label="Email:" placeholder='example@email.com' />
+          <Input controlName="password" label="Password:" />
+          <Button type="submit" fluid={true}>Continue</Button>
+        </Form>
+        <div id="links">
+          <p>
+            Don't have an account?
+            <a href='#'>Sign up</a>
+          </p>
+          <p>
+            <a href='#'>Forgot password</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
