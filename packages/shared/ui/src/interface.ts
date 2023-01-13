@@ -1,0 +1,1 @@
+export { ETarget } from './components/Link';

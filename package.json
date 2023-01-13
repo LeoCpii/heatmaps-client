@@ -9,6 +9,7 @@
       "packages/*",
       "packages/shared/*",
       "packages/shared/config/*",
+      "packages/projects/web/*",
       "packages/projects/*",
       "packages/e2e/*"
     ]
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@heatmaps/design": "*",
+    "@heatmaps/lib": "*",
     "@heatmaps/lint": "*",
     "@heatmaps/ui": "*",
     "@types/jest": "^27.4.1",

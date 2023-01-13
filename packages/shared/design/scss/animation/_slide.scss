@@ -1,0 +1,97 @@
+.slide {
+    &-left {
+        &-enter {
+            opacity: 0;
+            transform: translateX(-10px);
+
+            &-active {
+                opacity: 1;
+                transform: translateX(0px);
+                transition: all 0.4s $transition;
+            }
+        }
+
+        &-exit {
+            opacity: 1;
+            transform: translateX(0px);
+
+            &-active {
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.4s $transition;
+            }
+        }
+    }
+
+    &-right {
+        &-enter {
+            opacity: 0;
+            transform: translateX(10px);
+
+            &-active {
+                opacity: 1;
+                transform: translateX(0px);
+                transition: all 0.4s $transition;
+            }
+        }
+
+        &-exit {
+            opacity: 1;
+            transform: translateX(0px);
+
+            &-active {
+                opacity: 0;
+                transform: translateX(10px);
+                transition: all 0.4s $transition;
+            }
+        }
+    }
+
+    &-bottom {
+        &-enter {
+            opacity: 0;
+            transform: translateY(10px);
+
+            &-active {
+                opacity: 1;
+                transform: translateY(0px);
+                transition: all 0.4s $transition;
+            }
+        }
+
+        &-exit {
+            opacity: 1;
+            transform: translateY(0px);
+
+            &-active {
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.4s $transition;
+            }
+        }
+    }
+
+    &-top {
+        &-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+
+            &-active {
+                opacity: 1;
+                transform: translateY(0px);
+                transition: all 0.4s $transition;
+            }
+        }
+
+        &-exit {
+            opacity: 1;
+            transform: translateY(0px);
+
+            &-active {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: all 0.4s $transition;
+            }
+        }
+    }
+}

@@ -2,10 +2,12 @@ RUN:=yarn
 
 # LIBS #
 UI:=ui
+LIB:=lib
 DESIGN:=design
 
-# APPS #
-WEB:=web
+# WEB #
+AUTH:=auth
+PLATFORM:=platform
 
 # ------------------ SETUP ------------------ #
 
@@ -28,10 +30,18 @@ install:
 dev-ui:
 	$(call run_in_workspace,$(UI),storybook)
 
-dev-web:
-	$(call run_in_workspace,$(WEB),start)
+# --- [WEB] --- #
+
+dev-auth:
+	$(call run_in_workspace,$(AUTH),start)
+
+dev-platform:
+	$(call run_in_workspace,$(PLATFORM),start)
 
 # ------------------ BUILD ------------------ #
+
+build-lib:
+	$(call run_in_workspace,$(LIB),build:prod)
 
 build-ui:
 	$(call run_in_workspace,$(UI),build)
@@ -39,10 +49,16 @@ build-ui:
 build-design:
 	$(call run_in_workspace,$(DESIGN),build:default)
 
-build-web:
-	$(call run_in_workspace,$(WEB),build)
+build-auth:
+	$(call run_in_workspace,$(AUTH),build)
+
+build-platform:
+	$(call run_in_workspace,$(PLATFORM),build)
 
 # ------------------ WATCH ------------------ #
+
+watch-lib:
+	$(call run_in_workspace,$(LIB),watch)
 
 watch-ui:
 	$(call run_in_workspace,$(UI),watch)
@@ -63,11 +79,11 @@ define delete_build
 endef
 
 clean-builds:
-	$(call delete_build,projects/$(VIVA))
-	$(call delete_build,projects/$(ZAP))
+	$(call delete_build,projects/web/$(AUTH))
+	$(call delete_build,projects/web/$(PLATFORM))
+	$(call delete_build,shared/$(DESIGN))
 	$(call delete_build,shared/$(LIB))
-	$(call delete_build,$(UI))
-	$(call delete_build,shared/$(DTO))
+	$(call delete_build,shared/$(UI))
 
 define delete_dependencies
 	@echo delete_dependencies $(1)
@@ -76,10 +92,10 @@ endef
 
 clean-dependencies:
 	rm -Rf ./node_modules
-	$(call delete_dependencies,projects/$(VIVA))
-	$(call delete_dependencies,projects/$(ZAP))
+	$(call delete_dependencies,projects/web/$(AUTH))
+	$(call delete_dependencies,projects/web/$(PLATFORM))
+	$(call delete_dependencies,shared/$(DESIGN))
 	$(call delete_dependencies,shared/$(LIB))
-	$(call delete_dependencies,shared/$(DTO))
 	$(call delete_dependencies,$(UI))
 
 clean-all: clean-dependencies clean-builds

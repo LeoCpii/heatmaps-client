@@ -1,0 +1,1 @@
+export { HeatMaps } from './heatmaps';

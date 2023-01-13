@@ -4,11 +4,14 @@
 @import "utilities/variables", "utilities/mixins";
 
 // 2. Base stuff
+@import "animation/slide";
+
+// 3. Base stuff
 @import "base/fonts";
 @import "base/normalize";
 @import "base/typography";
 
-// 3. Components
+// 4. Components
 @import "components/input";
 @import "components/button";
 @import "components/icon";

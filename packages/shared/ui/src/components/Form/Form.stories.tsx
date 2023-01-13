@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Form> = () => {
     const submit = (values) => { console.log('Enviando para o form', values); };
 
     const form = new FormGroup({
-        email: new FormControl({ value: 'teste', type: 'email', required: true }),
+        email: new FormControl({ value: 'novo valor', type: 'email', required: true }),
         password: new FormControl({ value: 'bolinho', type: 'password', required: false })
     });
 

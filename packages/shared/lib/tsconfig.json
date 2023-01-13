@@ -1,0 +1,42 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "rootDirs": [
+            "./dist"
+        ],
+        "outDir": "./dist",
+        "declaration": true,
+        "downlevelIteration": true,
+        "resolveJsonModule": true,
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@api": [
+                "src/api"
+            ],
+            "@environment": [
+                "src/environment"
+            ]
+        },
+        "plugins": [
+            {
+                "transform": "typescript-transform-paths",
+                "afterDeclarations": true
+            }
+        ]
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/**/__mocks__/**"
+    ]
+}

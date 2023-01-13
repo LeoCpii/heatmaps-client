@@ -27,7 +27,7 @@ const Form = ({ children, form, action, log }: IProps) => {
             SET_FORM && SET_FORM({});
         }
 
-        if (FORM?.isValid) { action(form.values); }
+        if (FORM?.isValid) { action(FORM.values); }
     };
 
     return (
