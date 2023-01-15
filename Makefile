@@ -99,3 +99,25 @@ clean-dependencies:
 	$(call delete_dependencies,$(UI))
 
 clean-all: clean-dependencies clean-builds
+
+# ------------------ DOCKER ------------------ #
+
+define build_image
+	@echo Build Docker Image - $(2)
+	docker build -t $(2) ./packages/projects/$(1)
+endef
+
+define run_image
+	@echo Run Docker Image - $(1)
+	docker run --name $(1) -d -p $(2):80 $(1)
+endef
+
+docker-auth:
+	$(call run_image, app-auth, 80)
+
+docker-platform:
+	$(call run_image, app-platform, 81)
+
+build-images:
+	$(call build_image,web/$(AUTH), app-auth)
+	$(call build_image,web/$(PLATFORM), app-platform)
