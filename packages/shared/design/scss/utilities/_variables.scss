@@ -1,0 +1,35 @@
+$pre: "ds";
+
+/* APPARENCE */
+$radius: 4px;
+$distance: 15px;
+
+/* TRANSITION */
+$duration: 0.2s;
+$transition: cubic-bezier(0.51, 0.31, 0, 1.01);
+$animation: $duration $transition;
+
+/* BOX SHADOW */
+$box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+
+/* FONT FAMILY */
+$font-regular: "gibson" !important;
+$font-light: "gibson-light" !important;
+$font-bold: "gibson-bold" !important;
+$font-semi-bold: "gibson-semi-bold" !important;
+
+/* FONT SIZE */
+$tiny: 8px;
+$small: 12px;
+$medium: 16px;
+$large: 18px;
+$x-large: 22px;
+
+/* FONT WEIGHT */
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 600;
+$weight-bold: 700;
+
+/* GRID */
+$columns: 12;
