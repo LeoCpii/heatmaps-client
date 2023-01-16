@@ -10,6 +10,7 @@
   "scripts": {
     "rollup": "rollup -c",
     "build": "rimraf dist && npm run rollup",
+    "watch": "rollup -c --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -1988,6 +1988,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@heatmaps/design@workspace:packages/shared/design"
   dependencies:
+    mkdirp: ^1.0.4
     node-sass: ^8.0.0
   languageName: unknown
   linkType: soft

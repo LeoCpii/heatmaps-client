@@ -20,6 +20,14 @@
     "types": [
       "node"
     ],
+    "paths": {
+      "@services/*": [
+        "src/shared/services/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
+    }
   },
   "exclude": [
     "**/tests",
