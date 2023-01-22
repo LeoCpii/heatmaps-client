@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Form> = () => {
     });
 
     return (
-        <Form form={form} action={(values) => submit(values)}>
+        <Form form={form} action={(values) => submit(values)} log={true}>
             <Input controlName="email" label="Email"/>
             <Input controlName="password" label="Password"/>
             <Button type='submit'>Send</Button>

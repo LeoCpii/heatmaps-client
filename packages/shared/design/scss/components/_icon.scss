@@ -8,6 +8,14 @@
     }
 
     &._mode {
+        color: var(--mode);
+    }
+
+    &._text {
+        color: var(--text);
+    }
+
+    &._gray {
         color: var(--gray-200);
     }
 }

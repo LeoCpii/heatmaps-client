@@ -9,6 +9,9 @@ DESIGN:=design
 AUTH:=auth
 PLATFORM:=platform
 
+# DOCKER #
+IMAGES:=app-$(AUTH) app-$(PLATFORM) orchestrator
+
 # ------------------ SETUP ------------------ #
 
 define run_in_workspace
@@ -55,6 +58,8 @@ build-auth:
 build-platform:
 	$(call run_in_workspace,$(PLATFORM),build)
 
+build-all: build-design build-lib build-ui build-auth build-platform
+
 # ------------------ WATCH ------------------ #
 
 watch-lib:
@@ -71,6 +76,16 @@ watch-design:
 test-ui:
 	$(call run_in_workspace,$(UI),test)
 
+# ------------------ DOCKER ------------------ #
+
+docker-setup: docker-build docker-compose
+
+docker-build:
+	docker-compose build
+
+docker-compose:
+	docker-compose up
+
 # ------------------ CLEAR ------------------ #
 
 define delete_build
@@ -81,9 +96,9 @@ endef
 clean-builds:
 	$(call delete_build,projects/web/$(AUTH))
 	$(call delete_build,projects/web/$(PLATFORM))
-	$(call delete_build,shared/$(DESIGN))
-	$(call delete_build,shared/$(LIB))
 	$(call delete_build,shared/$(UI))
+	$(call delete_build,shared/$(LIB))
+	$(call delete_build,shared/$(DESIGN))
 
 define delete_dependencies
 	@echo delete_dependencies $(1)
@@ -94,30 +109,8 @@ clean-dependencies:
 	rm -Rf ./node_modules
 	$(call delete_dependencies,projects/web/$(AUTH))
 	$(call delete_dependencies,projects/web/$(PLATFORM))
-	$(call delete_dependencies,shared/$(DESIGN))
+	$(call delete_dependencies,shared/$(UI))
 	$(call delete_dependencies,shared/$(LIB))
-	$(call delete_dependencies,$(UI))
+	$(call delete_dependencies,shared/$(DESIGN))
 
 clean-all: clean-dependencies clean-builds
-
-# ------------------ DOCKER ------------------ #
-
-define build_image
-	@echo Build Docker Image - $(2)
-	docker build -t $(2) ./packages/projects/$(1)
-endef
-
-define run_image
-	@echo Run Docker Image - $(1)
-	docker run --name $(1) -d -p $(2):80 $(1)
-endef
-
-docker-auth:
-	$(call run_image, app-auth, 80)
-
-docker-platform:
-	$(call run_image, app-platform, 81)
-
-build-images:
-	$(call build_image,web/$(AUTH), app-auth)
-	$(call build_image,web/$(PLATFORM), app-platform)

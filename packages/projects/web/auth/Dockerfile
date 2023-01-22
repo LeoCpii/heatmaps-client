@@ -1,11 +1,9 @@
-# Building app
+# Getting build
 FROM node:16-alpine as build
 
 WORKDIR /app
 
-COPY . .
-
-COPY /build ./
+COPY /build ./build
 
 # Starting NGINX
 FROM nginx

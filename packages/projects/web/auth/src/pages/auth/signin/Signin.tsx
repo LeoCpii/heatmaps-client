@@ -1,18 +1,35 @@
-import { Form, Input, Button, FormControl, FormGroup, Slide } from '@heatmaps/ui';
+import { Form, Input, Button, FormControl, FormGroup, Slide, IToast } from '@heatmaps/ui';
 import { IParams } from '@heatmaps/lib';
 import { Link as Redirect } from 'react-router-dom';
 import core from '../../../services/core';
+import { useState } from 'react';
 
 import './Signin.scss';
 
 function Signin() {
+    const [LIST, SET_LIST] = useState<IToast[]>([]);
+
     const form = new FormGroup({
-        email: new FormControl({ type: 'email', value: '' }),
-        password: new FormControl({ type: 'password', value: '' }),
+        email: new FormControl({ type: 'email', value: 'teste@teste.com' }),
+        password: new FormControl({ type: 'password', value: '123456' }),
     })
 
     const login = ({ email, password }: IParams) => {
-        core.auth.login({email, password})
+        core.auth.login({ email, password })
+            .then(() => console.log('FOI'))
+            .catch(() => showError('Deu errado'))
+            .finally(() => console.log('FIM'));
+    }
+
+    const showError = (message: string) => {
+        const toast: IToast = {
+            mode: 'danger',
+            title: 'Tivemos um problema',
+            description: message,
+            autoClose: true,
+            timeout: 80000
+        }
+        SET_LIST([...LIST, toast]);
     }
 
     return (
@@ -37,6 +54,7 @@ function Signin() {
                     </div>
                 </div>
             </div>
+            {/* <ToastProvider notify={() => console.log('aaa')} /> */}
         </Slide>
     );
 }

@@ -4,8 +4,9 @@
   "private": true,
   "author": "leonardo.goncalves <leogoncalves.contato@gmail.com>",
   "license": "MIT",
+  "homepage": "/platform/",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start -p 3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

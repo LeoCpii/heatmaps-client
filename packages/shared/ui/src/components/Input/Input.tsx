@@ -39,7 +39,7 @@ const Input = ({ icon, placeholder = '', label, controlName }: IProps) => {
 
     const iconFn = () => {
         return icon
-            ? <Icon icon={icon} size={ESize.MID} theme="mode"></Icon>
+            ? <Icon icon={icon} size={ESize.MID} theme="mode"/>
             : '';
     };
 

@@ -1,0 +1,22 @@
+
+version: '3.9'
+services:
+  app-auth:
+    container_name: app-auth
+    build:
+      context: ./packages/projects/web/auth
+
+  app-platform:
+    container_name: app-platform
+    build:
+      context: ./packages/projects/web/platform
+
+  orchestrator:
+    container_name: orchestrator-new
+    ports:
+      - 80:80
+    depends_on:
+      - app-auth
+      - app-platform
+    build:
+      context: .

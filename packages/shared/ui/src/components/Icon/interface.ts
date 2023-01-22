@@ -1,10 +1,10 @@
 export interface IProps {
     icon: TIcon;
-    theme: 'brand' | 'accent' | 'mode';
+    theme: 'brand' | 'accent' | 'mode' | 'text' | 'gray';
     size: ESize;
 }
 
-export type TIcon = 'copy' | 'search';
+export type TIcon = 'copy' | 'search' | 'close' | 'check' | 'attention' | 'info';
 
 export enum ESize {
     SMALL = '12px',
