@@ -24,6 +24,7 @@ endef
 setup:
 	make clean-all
 	make install
+	make build-all
 
 install:
 	yarn
